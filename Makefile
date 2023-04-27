@@ -6,7 +6,7 @@
 #    By: aakhtab <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/25 17:40:21 by aakhtab           #+#    #+#              #
-#    Updated: 2023/04/25 23:22:09 by aakhtab          ###   ########.fr        #
+#    Updated: 2023/04/28 00:44:46 by aakhtab          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,7 @@ RED			= \033[0;31m
 
 CC			=	cc
 
-SRCS			=	main.c pipex_utils.c
+SRCS			=	main.c exec.c pipex_tools.c
 
 OBJS			=	$(SRCS:.c=.o)
 
