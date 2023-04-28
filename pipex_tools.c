@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipex_utils.c                                      :+:      :+:    :+:   */
+/*   pipex_tools.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aakhtab <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/25 22:12:22 by aakhtab           #+#    #+#             */
-/*   Updated: 2023/04/27 16:28:17 by aakhtab          ###   ########.fr       */
+/*   Updated: 2023/04/28 17:17:20 by aakhtab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,11 @@
 
 void	ft_free(char **p)
 {
-	while (*p)
-		free(p++);
+	int	i;
+
+	i = -1;
+	while (p[++i])
+		free(p[i]);
 	free(p);
 }
 
@@ -33,14 +36,16 @@ char	**end_slash(char **path)
 	len = -1;
 	while (path[++len])
 		tmp[len] = ft_strjoin(path[len], "/");
+	ft_free(path);
 	return(tmp);
 }
-int	check_err(int n_fd, char *file, int line)
+int	check_err(int n_fd, char *file, int line, bool to_exit)
 {
 	if (n_fd == -1)
 	{
 		ft_printf("ERROR: (%s): %d %s\n", file, line, strerror(errno));
-		exit(1);
+		if (to_exit == true)
+			exit(1);
 	}
 	return (n_fd);
 }

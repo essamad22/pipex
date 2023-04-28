@@ -6,7 +6,7 @@
 /*   By: aakhtab <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/25 22:11:51 by aakhtab           #+#    #+#             */
-/*   Updated: 2023/04/28 00:45:47 by aakhtab          ###   ########.fr       */
+/*   Updated: 2023/04/28 17:17:12 by aakhtab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ char	*cmd_path(char **path, char *cmd)
 	int		i;
 
 	i = -1;
+	if (access(cmd, X_OK) == 0)
+		return (cmd);
 	while (path[++i])
 	{
 		tmp = ft_strjoin(path[i], cmd);
@@ -48,6 +50,7 @@ char	**get_path(char ***cmd, char **envr)
 	i = -1;
 	while (++i < 2)
 		paths[i] = cmd_path(tmp_2d, cmd[i][0]);
+	ft_free(tmp_2d);
 	while (--i > -1)
 	{
 		if (paths[i] == NULL)
@@ -65,7 +68,7 @@ void	get_cmd(t_pip *pip, char **av, char **envr)
 	while (++i < 2)
 		pip->cmd[i] = ft_split(av[i], ' ');
 	pip->path = get_path(pip->cmd, envr);
-	while (pip->cmd[--i])
+	while (--i >= 0)
 	{
 		if (ft_strlen(pip->cmd[i][0]) == 0)
 			exit(127);
@@ -88,7 +91,7 @@ int main(int ac, char *av[], char **envr)
 		ft_putstr_fd("\tUSAGE\t: ./pipex infile cmd1 cmd2 outfile\n", 2);
 		return (2);
 	}
-	pip.input_fd = check_err(open(av[1], O_RDONLY), __FILE__ , __LINE__);
+	pip.input_fd = check_err(open(av[1], O_RDONLY), __FILE__ , __LINE__, false);
 	get_cmd(&pip, av + 2, envr);
 	execution(pip, av, envr);
 }

@@ -6,7 +6,7 @@
 /*   By: aakhtab <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/25 22:07:54 by aakhtab           #+#    #+#             */
-/*   Updated: 2023/04/27 21:26:27 by aakhtab          ###   ########.fr       */
+/*   Updated: 2023/04/28 16:23:20 by aakhtab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
 # include <string.h>
 # include <sys/types.h>
 # include <sys/wait.h>
+# include <stdbool.h>
 
 typedef struct	s_pip {
 	int		fd[2];
@@ -34,5 +35,5 @@ typedef struct	s_pip {
 void	execution(t_pip pip, char **av, char **envr);
 void	ft_free(char **p);
 char	**end_slash(char **path);
-int		check_err(int n_fd, char *file, int line);
+int		check_err(int n_fd, char *file, int line, bool to_exit);
 #endif
