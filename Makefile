@@ -6,7 +6,7 @@
 #    By: aakhtab <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/25 17:40:21 by aakhtab           #+#    #+#              #
-#    Updated: 2023/04/28 17:34:16 by aakhtab          ###   ########.fr        #
+#    Updated: 2023/04/28 18:03:23 by aakhtab          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,19 +37,9 @@ LIBFT		= my_lib/libft.a
 all:	${NAME}
 
 
-${NAME}:	$(LIBFT) ${OBJS}
+${NAME}:	$(LIBFT) ${OBJS} header
 			@$(CC) $(CFLAGS) $(SRCS) lib/libft.a -o $(NAME)
-			@printf "$(GREEN)======> DONE ✅\n$(RESET)"
-			@printf "$(PURPLE)$(S1)||\n$(S1)||\n"
-			@printf "$(PURPLE)                                           ||\n"
-			@printf "    ██████╗ ██╗██████╗ ███████╗██╗  ██╗    ||\n"
-			@printf "    ██╔══██╗██║██╔══██╗██╔════╝╚██╗██╔╝    ||\n"
-			@printf "    ██████╔╝██║██████╔╝█████╗   ╚███╔╝     ||\n"
-			@printf "    ██╔═══╝ ██║██╔═══╝ ██╔══╝   ██╔██╗     ||\n"
-			@printf "    ██║     ██║██║     ███████╗██╔╝ ██╗    ||\n"
-			@printf "    ╚═╝     ╚═╝╚═╝     ╚══════╝╚═╝  ╚═╝    ||\n"
-			@printf "$(PURPLE)                                  FINISHED ||\n"
-			@printf "$(S1)||\n$(S1)||$(RESET)\n"
+
 
 $(LIBFT)	:
 	@make -C lib
@@ -72,5 +62,17 @@ fclean:	clean
 			
 re:	fclean all
 
+header :
+	@printf "$(PURPLE)$(S1)||\n$(S1)||\n"
+	@printf "$(PURPLE)                                           ||\n"
+	@printf "    ██████╗ ██╗██████╗ ███████╗██╗  ██╗    ||\n"
+	@printf "    ██╔══██╗██║██╔══██╗██╔════╝╚██╗██╔╝    ||\n"
+	@printf "    ██████╔╝██║██████╔╝█████╗   ╚███╔╝     ||\n"
+	@printf "    ██╔═══╝ ██║██╔═══╝ ██╔══╝   ██╔██╗     ||\n"
+	@printf "    ██║     ██║██║     ███████╗██╔╝ ██╗    ||\n"
+	@printf "    ╚═╝     ╚═╝╚═╝     ╚══════╝╚═╝  ╚═╝    ||\n"
+	@printf "$(PURPLE)                                  FINISHED ||\n"
+	@printf "$(S1)||\n$(S1)||$(RESET)\n"
+	
 .PHONY: all clean fclean re
 

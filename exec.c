@@ -6,7 +6,7 @@
 /*   By: aakhtab <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 20:08:54 by aakhtab           #+#    #+#             */
-/*   Updated: 2023/04/28 17:11:50 by aakhtab          ###   ########.fr       */
+/*   Updated: 2023/04/28 22:42:22 by aakhtab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,13 @@
 void	sec_proc(t_pip pip, char **av, char **envr)
 {
 	close(pip.fd[1]);
-	pip.output_fd = check_err(open(av[4], O_WRONLY | O_CREAT, 0644), __FILE__, __LINE__, true);
+	pip.output_fd = check_err(open(av[4], O_WRONLY | O_TRUNC | O_CREAT, 0644), \
+			__FILE__, __LINE__, true);
 	dup2(pip.fd[0], STDIN_FILENO);
 	close(pip.fd[0]);
 	dup2(pip.output_fd, STDOUT_FILENO);
 	close(pip.output_fd);
-	execve(pip.path[1], pip.cmd[1], envr);
+	check_err(execve(pip.path[1], pip.cmd[1], envr), __FILE__, __LINE__, true);
 }
 
 void	first_proc(t_pip pip, char **envr)
@@ -32,7 +33,7 @@ void	first_proc(t_pip pip, char **envr)
 	close(pip.input_fd);
 	dup2(pip.fd[1], STDOUT_FILENO);
 	close(pip.fd[1]);
-	execve(pip.path[0], pip.cmd[0], envr);
+	check_err(execve(pip.path[0], pip.cmd[0], envr), __FILE__, __LINE__, true);
 }
 
 void	execution(t_pip pip, char **av, char **envr)
@@ -54,8 +55,3 @@ void	execution(t_pip pip, char **av, char **envr)
 	waitpid(pid2, &st, 0);
 	exit(st);
 }
-
-
-
-
-

@@ -6,16 +6,16 @@
 /*   By: aakhtab <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/24 18:20:15 by aakhtab           #+#    #+#             */
-/*   Updated: 2023/04/25 18:17:42 by aakhtab          ###   ########.fr       */
+/*   Updated: 2023/04/28 17:56:49 by aakhtab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include <fcntl.h>
 
- void	_putchar(char c, int fd)
+void	_putchar(char c, int fd)
 {	
-	write (fd, &c, 1);
+	write(fd, &c, 1);
 }
 
 void	ft_putnbr_fd(int n, int fd)

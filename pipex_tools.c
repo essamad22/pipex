@@ -6,7 +6,7 @@
 /*   By: aakhtab <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/25 22:12:22 by aakhtab           #+#    #+#             */
-/*   Updated: 2023/04/28 17:17:20 by aakhtab          ###   ########.fr       */
+/*   Updated: 2023/04/28 17:55:04 by aakhtab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,9 @@ char	**end_slash(char **path)
 	while (path[++len])
 		tmp[len] = ft_strjoin(path[len], "/");
 	ft_free(path);
-	return(tmp);
+	return (tmp);
 }
+
 int	check_err(int n_fd, char *file, int line, bool to_exit)
 {
 	if (n_fd == -1)
